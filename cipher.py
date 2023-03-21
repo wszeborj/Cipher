@@ -3,10 +3,8 @@ AMOUNT_LETTERS = 26
 AMOUNT_DIGITS = 10
 
 
-def cipher(input_text: str, shift: int = 13):
+def cipher(input_text: str, shift: int):
     cipher_text = ''
-    crypted = ''
-
     for i in input_text:
         if i.isupper():
             crypted = chr((ord(i) + shift - ord('A')) % AMOUNT_LETTERS + ord('A'))

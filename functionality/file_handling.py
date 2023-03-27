@@ -1,9 +1,10 @@
 import os
+import json
 
 
 class FileHandler:
     @staticmethod
-    def open_file(loaded_file_path: str):
+    def open_file(loaded_file_path: str) -> str:
         try:
             with open(loaded_file_path, 'r') as file:
                 return file.read()
@@ -11,15 +12,11 @@ class FileHandler:
             print(f'{err=}, {type(err)=}')
 
     @staticmethod
-    def save_file(file_path_to_save: str, data: str):
-        if os.path.exists(file_path_to_save):
-            operation = 'a'
-        else:
-            operation = 'w'
-
+    def save_file(file_path_to_save: str, data: str, operation: str = 'w') -> None:
         try:
             with open(file_path_to_save, operation) as file:
                 file.write(data)
+                file.write('\n')
         except OSError as err:
             print(f'{err=}, {type(err)=}')
 

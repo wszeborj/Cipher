@@ -1,7 +1,3 @@
-import os
-import json
-
-
 class FileHandler:
     @staticmethod
     def open_file(loaded_file_path: str) -> str:

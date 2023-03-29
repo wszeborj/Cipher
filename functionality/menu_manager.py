@@ -68,25 +68,25 @@ class Manager:
 
         dct.get(choice)()
 
-    def cipher_rot(self, rot_status: str, rot_shift: int) -> None:
+    def cipher_rot(self, rot_status: str, rot_shift: int, crypting: bool) -> None:
         path_loaded_file = self.menu.ask_path_loaded_file()
         org_data = FileHandler.open_file(loaded_file_path=path_loaded_file)
-        ciphered_data = cipher.cipher(input_text=org_data, shift=rot_shift)
+        ciphered_data = cipher.cipher(input_text=org_data, shift=rot_shift, crypting=crypting)
         data_to_save = {'text': ciphered_data, 'status': rot_status, 'rot_type': rot_shift}
         path_saved_file, operation = self.menu.ask_path_saved_file()
         FileHandler.save_file(file_path_to_save=path_saved_file, data=json.dumps(data_to_save), operation=operation)
 
     def cipher_rot13(self) -> None:
-        self.cipher_rot(rot_status='crypted', rot_shift=13)
+        self.cipher_rot(rot_status='crypted', rot_shift=13, crypting=True)
 
     def decipher_rot13(self) -> None:
-        self.cipher_rot(rot_status='encrypted', rot_shift=13)
+        self.cipher_rot(rot_status='encrypted', rot_shift=13, crypting=False)
 
     def cipher_rot47(self) -> None:
-        self.cipher_rot(rot_status='crypted', rot_shift=47)
+        self.cipher_rot(rot_status='crypted', rot_shift=47, crypting=True)
 
     def decipher_rot47(self) -> None:
-        self.cipher_rot(rot_status='encrypted', rot_shift=47)
+        self.cipher_rot(rot_status='encrypted', rot_shift=47, crypting=False)
 
     def decipher_exit(self) -> None:
         print('Koniec')

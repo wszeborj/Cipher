@@ -84,11 +84,3 @@ class CaesarCipher:
             cipher_text += crypted
 
         return Text(cipher_text, crypting, shift)
-
-#
-# def main():
-#     print(cipher('ZUPAzupa1', 13))
-#
-#
-# if __name__ == '__main__':
-#     main()

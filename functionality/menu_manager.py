@@ -1,9 +1,6 @@
-import os
 import sys
-import cipher
 import json
 from file_handling import FileHandler
-from dataclasses import asdict
 from cipher import CaesarCipher
 from buffer import Buffer
 from menu import Menu
@@ -24,11 +21,6 @@ class Manager:
 
     def execute(self) -> None:
         dct = {
-            # 1: self.cipher_rot13,
-            # 2: self.decipher_rot13,
-            # 3: self.cipher_rot47,
-            # 4: self.decipher_rot47,
-            # 5: self.decipher_exit
             1: self.cipher_text_rot13,
             2: self.decipher_text_rot13,
             3: self.cipher_text_rot47,
@@ -53,9 +45,6 @@ class Manager:
     def decipher_text_rot47(self):
         self.cipher_text(rot_shift=47, crypting=False)
 
-    # def show_buffer(self):
-    #     self.buffer.show_all()
-
     def save_text(self):
         path_saved_file, operation = self.menu.ask_path_saved_file()
         input_str = ''
@@ -70,6 +59,10 @@ class Manager:
         user_data = self.menu.ask_for_input()
         ciphered_data = CaesarCipher.encrypt_decrypt(input_text=user_data, shift=rot_shift, crypting=crypting)
         self.buffer.add(ciphered_data)
+
+    def exit(self) -> None:
+        print('Koniec')
+        sys.exit(0)
 
     # def cipher_rot(self, rot_shift: int, crypting: bool) -> None:
     #     if crypting:
@@ -94,10 +87,6 @@ class Manager:
     #
     # def decipher_rot47(self) -> None:
     #     self.cipher_rot(rot_shift=47, crypting=False)
-
-    def exit(self) -> None:
-        print('Koniec')
-        sys.exit(0)
 
 #
 # # TODO PLIK MAIN.py

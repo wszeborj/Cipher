@@ -12,11 +12,12 @@ class Menu:
         print('7. Zakoncz')
 
     def get_choice(self, no_of_options: int) -> int:
-        choice = 0
-        while choice not in range(no_of_options):
+        while True:
             choice = int(input('Wybierz opcję: '))
-            print('Błędna opcja! Podaj numer z zakresu 1 - 5.')
-        return choice
+            if choice not in range(1, no_of_options + 1):
+                print(f'Błędna opcja! Podaj numer z zakresu 1 - {no_of_options}.')
+                continue
+            return choice
 
     def ask_path_loaded_file(self) -> str:
         while True:

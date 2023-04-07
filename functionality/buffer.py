@@ -26,7 +26,7 @@ class Buffer:
         return self.__data
 
     def add(self, text: Text):
-        self.__data.append(text)
+        self.__data.append(asdict(text))
 
     def show_all(self):
         for t in self.__data:

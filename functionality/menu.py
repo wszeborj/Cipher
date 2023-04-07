@@ -13,11 +13,15 @@ class Menu:
 
     def get_choice(self, no_of_options: int) -> int:
         while True:
-            choice = int(input('Wybierz opcję: '))
-            if choice not in range(1, no_of_options + 1):
+            try:
+                choice = int(input('Wybierz opcję: '))
+                if choice not in range(1, no_of_options + 1):
+                    raise ValueError
+            except ValueError:
                 print(f'Błędna opcja! Podaj numer z zakresu 1 - {no_of_options}.')
                 continue
-            return choice
+            else:
+                return choice
 
     def ask_path_loaded_file(self) -> str:
         while True:

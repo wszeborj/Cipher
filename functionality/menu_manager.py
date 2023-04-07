@@ -27,7 +27,9 @@ class Manager:
             4: self.decipher_text_rot47,
             5: self.buffer.show_all,
             6: self.save_text,
-            7: self.exit
+            7: self.load_file,
+            8: self.clear_buffer,
+            9: self.exit
         }
         choice = self.menu.get_choice(no_of_options=len(dct.keys()))
 
@@ -51,6 +53,15 @@ class Manager:
         for t in self.buffer.data:
             input_str += (str(t) + '\n')
         FileHandler.save_file(file_path_to_save=path_saved_file, data=input_str, operation=operation)
+
+    def load_file(self):
+        loaded_file_path = self.menu.ask_path_loaded_file()
+        loaded_data = FileHandler.open_file(loaded_file_path=loaded_file_path)
+        self.buffer.extend(loaded_data)
+        self.buffer.show_all()
+
+    def clear_buffer(self):
+        self.buffer.clear()
 
     def cipher_text(self, rot_shift: int, crypting: bool) -> None:
         """

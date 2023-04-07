@@ -28,6 +28,12 @@ class Buffer:
     def add(self, text: Text):
         self.__data.append(asdict(text))
 
+    def extend(self, loaded_text: dict | list[dict]):
+        self.__data.extend(loaded_text)
+
+    def clear(self):
+        self.__data.clear()
+
     def show_all(self):
         for t in self.__data:
             print(t)

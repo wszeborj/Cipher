@@ -9,7 +9,9 @@ class Menu:
         print('4. Odszyfruj input metodą rot47')
         print('5. Pokaz buffor')
         print('6. Zapisz buffor do pliku')
-        print('7. Zakoncz')
+        print('7. Załaduj plik do buffora')
+        print('8. Wyczyść buffor')
+        print('9. Zakoncz')
 
     def get_choice(self, no_of_options: int) -> int:
         while True:

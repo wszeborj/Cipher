@@ -49,10 +49,7 @@ class Manager:
 
     def save_text(self):
         path_saved_file, operation = self.menu.ask_path_saved_file()
-        input_str = ''
-        for t in self.buffer.data:
-            input_str += (str(t) + '\n')
-        FileHandler.save_file(file_path_to_save=path_saved_file, data=input_str, operation=operation)
+        FileHandler.save_file(file_path_to_save=path_saved_file, data=self.buffer.data, operation=operation)
 
     def load_file(self):
         loaded_file_path = self.menu.ask_path_loaded_file()

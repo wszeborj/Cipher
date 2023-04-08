@@ -35,5 +35,6 @@ class Buffer:
         self.__data.clear()
 
     def show_all(self):
-        for t in self.__data:
-            print(t)
+        # for t in self.__data:
+        #     print(t)
+        print(self.__data)

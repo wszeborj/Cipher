@@ -8,8 +8,8 @@ class Menu:
         print('3. Szyfruj input metodą rot47')
         print('4. Odszyfruj input metodą rot47')
         print('5. Pokaz buffor')
-        print('6. Zapisz buffor do pliku')
-        print('7. Załaduj plik do buffora')
+        print('6. Zapisz buffor do pliku json')
+        print('7. Załaduj plik json do buffora')
         print('8. Wyczyść buffor')
         print('9. Zakoncz')
 

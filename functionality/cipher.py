@@ -1,7 +1,4 @@
-# from memory_profiler import profile
-from abc import ABC, abstractmethod
-from dataclasses import dataclass, asdict
-from buffer import Text
+from functionality.buffer import Text
 
 
 # class ROT(ABC):
@@ -68,10 +65,6 @@ class CaesarCipher:
         cipher_text = ''
 
         for char in input_text:
-            # if char.isupper():
-            #     first_ascii_char = 'A'
-            # elif char.islower():
-            #     first_ascii_char = 'a'
             if char.isalpha():
                 first_ascii_char = 'A' if char.isupper() else 'a'
             elif char.isdigit():
@@ -83,4 +76,4 @@ class CaesarCipher:
                                               is_encrypt=crypting)
             cipher_text += crypted
 
-        return Text(cipher_text, crypting, shift)
+        return Text(text=cipher_text, rot_type=shift, status=crypting)

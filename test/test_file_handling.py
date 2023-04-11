@@ -22,15 +22,15 @@ class TestFileHandler(unittest.TestCase):
         self.file_handler = FileHandler()
 
     def test_open_file(self):
-        with tempfile.NamedTemporaryFile(mode='w', delete=False) as temp_file:
+        with tempfile.NamedTemporaryFile(mode="w", delete=False) as temp_file:
             file_path = temp_file.name
-            test_data = 'This is a test'
+            test_data = "This is a test"
 
-            FileHandler.save_file(file_path, test_data, 'w')
+            FileHandler.save_file(file_path, test_data, "w")
 
-            with open(file_path, 'r') as file:
+            with open(file_path, "r") as file:
                 contents = file.read()
-                assert contents == test_data + "\n"
+                assert contents == test_data
 
         # with tempfile.NamedTemporaryFile(mode='w', delete=False) as temp_file:
         #     temp_file.write('test')
@@ -42,5 +42,5 @@ class TestFileHandler(unittest.TestCase):
         #     print(contents
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

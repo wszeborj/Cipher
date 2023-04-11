@@ -33,5 +33,3 @@
 DRY -> Don't repeat yourself
 KISS -> keep it stupid simple
 YAGNI - > You aren't gonna need it
-
-

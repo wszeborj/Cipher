@@ -56,24 +56,33 @@ class CaesarCipher:
             amount_chars = amount_letters
 
         if is_encrypt:
-            return chr((ord(char) + shift - ord(first_ascii_char)) % amount_chars + ord(first_ascii_char))
-        else:
-            return chr((ord(char) - shift - ord(first_ascii_char)) % amount_chars + ord(first_ascii_char))
+            return chr(
+                (ord(char) + shift - ord(first_ascii_char)) % amount_chars
+                + ord(first_ascii_char)
+            )
+        return chr(
+            (ord(char) - shift - ord(first_ascii_char)) % amount_chars
+            + ord(first_ascii_char)
+        )
 
     @staticmethod
     def encrypt_decrypt(input_text: str, shift: int, crypting: bool = True) -> Text:
-        cipher_text = ''
+        cipher_text = ""
 
         for char in input_text:
             if char.isalpha():
-                first_ascii_char = 'A' if char.isupper() else 'a'
+                first_ascii_char = "A" if char.isupper() else "a"
             elif char.isdigit():
-                first_ascii_char = '0'
+                first_ascii_char = "0"
             else:
                 cipher_text += char
                 continue
-            crypted = CaesarCipher.shift_char(char=char, shift=shift, first_ascii_char=first_ascii_char,
-                                              is_encrypt=crypting)
+            crypted = CaesarCipher.shift_char(
+                char=char,
+                shift=shift,
+                first_ascii_char=first_ascii_char,
+                is_encrypt=crypting,
+            )
             cipher_text += crypted
 
         return Text(text=cipher_text, rot_type=shift, status=crypting)

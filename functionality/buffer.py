@@ -1,4 +1,5 @@
 from dataclasses import dataclass, asdict
+from typing import List, Dict
 
 
 @dataclass
@@ -8,13 +9,10 @@ class Text:
     rot_type: int
 
     def __post_init__(self):
-        """
-        pass
-        """
         if self.status:
-            self.status = 'encrypted'
+            self.status = "encrypted"
         else:
-            self.status = 'decrypted'
+            self.status = "decrypted"
 
 
 class Buffer:
@@ -28,7 +26,7 @@ class Buffer:
     def add(self, text: Text):
         self.__data.append(asdict(text))
 
-    def extend(self, loaded_text: list[dict]):
+    def extend(self, loaded_text: List[Dict]):
         self.__data.extend(loaded_text)
 
     def clear(self):

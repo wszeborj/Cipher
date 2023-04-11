@@ -5,26 +5,23 @@ class FileHandler:
     @staticmethod
     def open_file(loaded_file_path: str):
         try:
-            with open(loaded_file_path, 'r') as file:
+            with open(f"{loaded_file_path}.json", "r") as file:
                 return json.load(file)
-                # return file.read()
         except OSError as err:
-            print(f'{err=}, {type(err)=}')
+            print(f"{err=}, {type(err)=}")
 
     @staticmethod
-    def save_file(file_path_to_save: str, data: str, operation: str = 'w') -> None:
+    def save_file(file_path_to_save: str, data: str, operation: str = "w") -> None:
         try:
-            with open(file_path_to_save, operation) as file:
-                # file.write(data)
+            with open(f"{file_path_to_save}.json", operation) as file:
                 json.dump(data, file)
-                # file.write('\n')
         except OSError as err:
-            print(f'{err=}, {type(err)=}')
+            print(f"{err=}, {type(err)=}")
 
 
 def main():
     pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

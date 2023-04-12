@@ -3,19 +3,19 @@ import os
 
 class Menu:
     def show(self) -> None:
-        options = ["Szyfruj input metodą rot13", "Odszyfruj input metodą rot13"]
+        options = [
+            "Szyfruj input metodą rot13",
+            "Odszyfruj input metodą rot13",
+            "Szyfruj input metodą rot47",
+            "Odszyfruj input metodą rot47",
+            "Pokaz buffor",
+            "Zapisz buffor do pliku json",
+            "Załaduj plik json do buffora",
+            "Wyczyść buffor",
+            "Zakoncz",
+        ]
         for i, option in enumerate(options, start=1):
             print(f"{i}. {option}")
-
-        print("1. Szyfruj input metodą rot13")
-        print("2. Odszyfruj input metodą rot13")
-        print("3. Szyfruj input metodą rot47")
-        print("4. Odszyfruj input metodą rot47")
-        print("5. Pokaz buffor")
-        print("6. Zapisz buffor do pliku json")
-        print("7. Załaduj plik json do buffora")
-        print("8. Wyczyść buffor")
-        print("9. Zakoncz")
 
     def get_choice(self, no_of_options: int) -> int:
         while True:

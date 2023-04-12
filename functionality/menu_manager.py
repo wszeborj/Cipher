@@ -28,7 +28,7 @@ class Manager:
             5: self.buffer.show_all,
             6: self.save_text,
             7: self.load_file,
-            8: self.clear_buffer,
+            8: self.buffer.clear,
             9: self.exit,
         }
         choice = self.menu.get_choice(no_of_options=len(dct.keys()))
@@ -60,9 +60,6 @@ class Manager:
         loaded_data = FileHandler.open_file(loaded_file_path=loaded_file_path)
         self.buffer.extend(loaded_data)
         self.buffer.show_all()
-
-    def clear_buffer(self):
-        self.buffer.clear()
 
     def perform_cipher(self, rot_shift: int, crypting: bool) -> None:
         """

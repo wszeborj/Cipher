@@ -22,7 +22,7 @@ class Menu:
             try:
                 choice = int(input("Wybierz opcję: "))
                 if choice not in range(1, no_of_options + 1):
-                    print("Błędna opcja! Podaj numer z zakresu 1 - {no_of_options}.")
+                    print(f"Błędna opcja! Podaj numer z zakresu 1 - {no_of_options}.")
                     continue
                 return choice
             except ValueError:

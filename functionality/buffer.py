@@ -9,7 +9,7 @@ class Text:
     rot_type: int
 
     def __post_init__(self):
-        if self.status:
+        if self.status and not self.status == "decrypted":
             self.status = "encrypted"
         else:
             self.status = "decrypted"

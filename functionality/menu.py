@@ -37,9 +37,9 @@ class Menu:
 
     def ask_path_saved_file(self) -> (str, str):
         while True:
-            path_loaded_file = input("Podaj scieżkę do zapisania pliku: ")
+            path_saved_file = input("Podaj scieżkę do zapisania pliku: ")
             operation = "w"
-            if os.path.exists(path_loaded_file):
+            if os.path.exists(path_saved_file):
                 user_operation = input(
                     "Dodac do pliku (d) czu napisac plik (n)? (d/n): "
                 )
@@ -49,7 +49,7 @@ class Menu:
                     operation = "w"
                 else:
                     continue
-            return path_loaded_file, operation
+            return path_saved_file, operation
 
     def ask_for_input(self) -> str:
         user_input = input("Podaj treść: ")

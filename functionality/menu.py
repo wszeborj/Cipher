@@ -41,7 +41,7 @@ class Menu:
             operation = "w"
             if os.path.exists(path_saved_file):
                 user_operation = input(
-                    "Dodac do pliku (d) czu napisac plik (n)? (d/n): "
+                    "Dodac do pliku (d) czu nadpisac plik (n)? (d/n): "
                 )
                 if user_operation.lower() == "d":
                     operation = "a"

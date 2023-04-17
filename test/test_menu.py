@@ -70,7 +70,40 @@ class TestMenu(unittest.TestCase):
     def test_provide_path_which_exist_and_append_operation_to_ask_path_saved_file_return_existing_path(
         self,
     ):
-        pass
+        expected = ("test.json", "a")
+        checked_input = ["test.json", "d"]
+        with open("./test.json", "w") as test_file:
+            test_file.write("test data")
+
+        with unittest.mock.patch("builtins.input", side_effect=checked_input):
+            path_saved_file = self.menu.ask_path_saved_file()
+        self.assertEquals(path_saved_file, expected)
+
+        os.remove("test.json")
+
+    def test_provide_path_which_exist_and_write_operation_to_ask_path_saved_file_return_existing_path(
+        self,
+    ):
+        expected = ("test.json", "w")
+        checked_input = ["test.json", "n"]
+        with open("./test.json", "w") as test_file:
+            test_file.write("test data")
+
+        with unittest.mock.patch("builtins.input", side_effect=checked_input):
+            path_saved_file = self.menu.ask_path_saved_file()
+        self.assertEquals(path_saved_file, expected)
+
+        os.remove("test.json")
+
+    def test_provide_path_which_doesnot_exist_and_write_operation_to_ask_path_saved_file_return_existing_path(
+        self,
+    ):
+        expected = ("test.json", "w")
+        checked_input = ["test.json"]
+
+        with unittest.mock.patch("builtins.input", side_effect=checked_input):
+            path_saved_file = self.menu.ask_path_saved_file()
+        self.assertEquals(path_saved_file, expected)
 
     def test_provide_letters_numbers_signs_to_ask_for_input_return_string(self):
         checked_input = ["", "zupa1.", "Ala ma kota"]

@@ -1,6 +1,8 @@
 import unittest
 from unittest.mock import Mock, patch
 from functionality.menu import Menu
+import tempfile
+import os
 
 
 class TestMenu(unittest.TestCase):
@@ -44,10 +46,28 @@ class TestMenu(unittest.TestCase):
                 )
                 self.assertEquals(choice, 5)
 
-    def test_provide_path_to_ask_path_loaded_file_return_existing_path(self):
-        pass
+    def test_provide_path_to_ask_path_loaded_file_return_path(self):
+        expected = "test.json"
+        prompt = "Nie ma takiego pliku. Spróbuj jeszcze raz."
+        checked_input = [
+            "zupa.txt",
+            r"C:\Users\user\OneDrive\Dokumenty\cipher\test\test.txt",
+            123,
+            r"test.json",
+        ]
+        with open("./test.json", "w") as test_file:
+            test_file.write("test data")
 
-    def test_provide_path_and_operation_to_ask_path_saved_file_return_path_and_operation(
+        with unittest.mock.patch("builtins.input", side_effect=checked_input):
+            with unittest.mock.patch("builtins.print") as mock_print:
+                path_loaded_file = self.menu.ask_path_loaded_file()
+                mock_print.assert_has_calls(
+                    [unittest.mock.call(prompt) for _ in range(len(checked_input) - 1)]
+                )
+                self.assertEquals(path_loaded_file, expected)
+        os.remove("test.json")
+
+    def test_provide_path_which_exist_and_append_operation_to_ask_path_saved_file_return_existing_path(
         self,
     ):
         pass

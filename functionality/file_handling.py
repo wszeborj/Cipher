@@ -9,6 +9,10 @@ class FileHandler:
                 return json.load(file)
         except OSError as err:
             print(f"{err=}, {type(err)=}")
+            return []
+        except json.decoder.JSONDecodeError as err:
+            print(f"{err}, File is not json file")
+            return []
 
     @staticmethod
     def save_file(

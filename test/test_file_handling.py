@@ -1,46 +1,71 @@
 import tempfile
 import unittest
+import json
+import os
 from unittest.mock import patch
 from functionality.file_handling import FileHandler
-
-"""
-
-    @staticmethod
-    def save_file(file_path_to_save: str, data: str, operation: str = 'w') -> None:
-        try:
-            with open(file_path_to_save, operation) as file:
-                file.write(data)
-                file.write('\n')
-        except OSError as err:
-            print(f'{err=}, {type(err)=}')
-
-"""
 
 
 class TestFileHandler(unittest.TestCase):
     def setUp(self):
         self.file_handler = FileHandler()
+        self.file_path = r"C:\Users\user\OneDrive\Dokumenty\cipher\test\test.json"
+        self.data1 = [{"text": "mhcn4", "status": "encrypted", "rot_type": 13}]
+        self.data2 = [{"text": "mhcn5", "status": "encrypted", "rot_type": 13}]
+        self.invalid_file_path = (
+            r"C:\Users\user\OneDrive\Dokumenty\cipher\test\test2.json"
+        )
 
-    def test_open_file(self):
-        with tempfile.NamedTemporaryFile(mode="w", delete=False) as temp_file:
-            file_path = temp_file.name
-            test_data = "This is a test"
+    # def test_open_file(self):
+    #     with tempfile.NamedTemporaryFile(mode="w", delete=False) as temp_file:
+    #         file_path = temp_file.name
+    #         test_data = [{"text": "mhcn4", "status": "encrypted", "rot_type": 13}]
+    #
+    #         FileHandler.save_file(file_path, test_data, "w")
+    #
+    #         with open(file_path, "r") as file:
+    #             contents = file.read()
+    #             assert contents == test_data
 
-            FileHandler.save_file(file_path, test_data, "w")
+    def test_provide_path_to_json_file_to_open_file_return_list_dictionaries(self):
+        with open(self.file_path, "w") as json_file:
+            json.dump(self.data1, json_file)
+        loaded_data = FileHandler.open_file(self.file_path)
+        self.assertEquals(loaded_data, self.data1)
+        os.remove(self.file_path)
 
-            with open(file_path, "r") as file:
-                contents = file.read()
-                assert contents == test_data
+    def test_provide_path_to_invalid_json_file_to_open_file_return_error(self):
+        with open(self.file_path, "w") as inv_json_file:
+            inv_json_file.write("test data")
 
-        # with tempfile.NamedTemporaryFile(mode='w', delete=False) as temp_file:
-        #     temp_file.write('test')
-        #     # temp_file.flush()
-        #     # self.assertEqual(self.file_handler.open_file(temp_file.name), 'test')
-        #
-        # with open(temp_file.name, 'r') as temp_file_read:
-        #     contents = temp_file_read.read()
-        #     print(contents
+        loaded_inv_data = FileHandler.open_file(self.file_path)
+        self.assertEquals(loaded_inv_data, [])
+        os.remove(self.file_path)
 
+    def test_provide_data_for_save_file_and_write_file_with_saved_data(self):
+        operation = "w"
 
-if __name__ == "__main__":
-    unittest.main()
+        FileHandler.save_file(
+            file_path_to_save=self.file_path, data=self.data1, operation=operation
+        )
+        with open(self.file_path, "r") as json_file:
+            saved_data = json.load(json_file)
+        self.assertEquals(saved_data, self.data1)
+        os.remove(self.file_path)
+
+    def test_provide_data_for_save_file_and_append_file_with_saved_data(self):
+        operation = "a"
+        expected_data = self.data1.extend(self.data2)
+
+        with open(self.file_path, "w") as json_file:
+            json.dump(self.data1, json_file)
+
+        FileHandler.save_file(
+            file_path_to_save=self.file_path, data=self.data2, operation=operation
+        )
+        with open(self.file_path, "r") as json_file:
+            saved_data = json.load(json_file)
+        print(f"{saved_data=}")
+        print(f"{expected_data=}")
+        self.assertEquals(saved_data, expected_data)
+        os.remove(self.file_path)

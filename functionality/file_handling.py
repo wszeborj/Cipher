@@ -3,7 +3,7 @@ import json
 
 class FileHandler:
     @staticmethod
-    def open_file(loaded_file_path: str):
+    def open_file(loaded_file_path: str) -> list:
         try:
             with open(f"{loaded_file_path}", "r") as file:
                 return json.load(file)

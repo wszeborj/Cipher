@@ -25,14 +25,6 @@ class FileHandler:
                     data.extend(loaded_data)
 
             with open(f"{file_path_to_save}", "w") as json_file:
-                json.dump(data, json_file)
+                json.dump(data, json_file, indent=4)
         except OSError as err:
             print(f"{err=}, {type(err)=}")
-
-
-def main():
-    pass
-
-
-if __name__ == "__main__":
-    main()

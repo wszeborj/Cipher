@@ -2,7 +2,8 @@ import os
 
 
 class Menu:
-    def show(self) -> None:
+    @staticmethod
+    def show() -> None:
         options = [
             "Szyfruj input metodą rot13",
             "Odszyfruj input metodą rot13",
@@ -17,7 +18,8 @@ class Menu:
         for i, option in enumerate(options, start=1):
             print(f"{i}. {option}")
 
-    def get_choice(self, no_of_options: int) -> int:
+    @staticmethod
+    def get_choice(no_of_options: int) -> int:
         while True:
             try:
                 choice = int(input("Wybierz opcję: "))
@@ -28,29 +30,26 @@ class Menu:
             except ValueError:
                 print(f"Błędna wartość podaj liczbę.")
 
-    def ask_path_loaded_file(self) -> str:
+    @staticmethod
+    def ask_path_loaded_file() -> str:
         while True:
             path_loaded_file = input("Podaj scieżkę do otwieranego pliku: ")
             if os.path.exists(path_loaded_file):
                 return path_loaded_file
             print("Nie ma takiego pliku. Spróbuj jeszcze raz.")
 
-    def ask_path_saved_file(self) -> (str, str):
-        while True:
-            path_saved_file = input("Podaj scieżkę do zapisania pliku: ")
+    @staticmethod
+    def ask_path_saved_file() -> (str, str):
+        path_saved_file = self.ask_path_loaded_file()
+        operation = "w"
+        user_operation = input("Dodac do pliku (d) czu nadpisac plik (n)? (d/n): ")
+        if user_operation.lower() == "d":
+            operation = "a"
+        elif user_operation.lower() == "n":
             operation = "w"
-            if os.path.exists(path_saved_file):
-                user_operation = input(
-                    "Dodac do pliku (d) czu nadpisac plik (n)? (d/n): "
-                )
-                if user_operation.lower() == "d":
-                    operation = "a"
-                elif user_operation.lower() == "n":
-                    operation = "w"
-                else:
-                    continue
-            return path_saved_file, operation
+        return path_saved_file, operation
 
-    def ask_for_input(self) -> str:
+    @staticmethod
+    def ask_for_input() -> str:
         user_input = input("Podaj treść: ")
         return user_input

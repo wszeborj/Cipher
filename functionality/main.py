@@ -2,8 +2,8 @@ from menu_manager import Manager
 
 
 def main():
-    m = Manager()
-    m.start()
+    manager = Manager()
+    manager.start()
 
 
 if __name__ == "__main__":

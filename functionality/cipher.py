@@ -1,50 +1,6 @@
 from functionality.buffer import Text
 
 
-# class ROT(ABC):
-#     def __init__(self):
-#         pass
-#
-#     @abstractmethod
-#     def encrypt(self):
-#         pass
-#
-#     @abstractmethod
-#     def decrypt(self):
-#         pass
-#
-#     @staticmethod
-#     def get_rot(rot_type: str):  # rot13, rot47
-#         if rot_type == 'rot13':
-#             return ROT13()
-#         elif rot_type == 'rot47':
-#             return ROT47()
-#         else:
-#             raise ValueError('Invalid ROT type')
-#
-#
-# class ROT13(ROT):
-#     def __init__(self):
-#         super().__init__()
-#
-#     def encrypt(self):
-#         pass
-#
-#     def decrypt(self):
-#         pass
-#
-#
-# class ROT47(ROT):
-#     def __init__(self):
-#         super().__init__()
-#
-#     def encrypt(self):
-#         pass
-#
-#     def decrypt(self):
-#         pass
-
-
 class CaesarCipher:
     @staticmethod
     def shift_char(char: str, shift: int, first_ascii_char: str, is_encrypt: bool):

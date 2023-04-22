@@ -40,5 +40,5 @@ class CaesarCipher:
                 is_encrypt=crypting,
             )
             cipher_text += crypted
-
+        print("Rezultat: ", cipher_text)
         return Text(text=cipher_text, rot_type=shift, status=crypting)

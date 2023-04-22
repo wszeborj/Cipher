@@ -40,14 +40,20 @@ class Menu:
 
     @staticmethod
     def ask_path_saved_file() -> (str, str):
-        path_saved_file = self.ask_path_loaded_file()
-        operation = "w"
-        user_operation = input("Dodac do pliku (d) czu nadpisac plik (n)? (d/n): ")
-        if user_operation.lower() == "d":
-            operation = "a"
-        elif user_operation.lower() == "n":
+        while True:
+            path_saved_file = input("Podaj scieżkę do zapisania pliku: ")
             operation = "w"
-        return path_saved_file, operation
+            if os.path.exists(path_saved_file):
+                user_operation = input(
+                    "Dodac do pliku (d) czu nadpisac plik (n)? (d/n): "
+                )
+                if user_operation.lower() == "d":
+                    operation = "a"
+                elif user_operation.lower() == "n":
+                    operation = "w"
+                else:
+                    continue
+            return path_saved_file, operation
 
     @staticmethod
     def ask_for_input() -> str:

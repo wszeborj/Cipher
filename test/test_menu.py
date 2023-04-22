@@ -6,9 +6,6 @@ import os
 
 
 class TestMenu(unittest.TestCase):
-    def setUp(self):
-        self.menu = Menu()
-
     def test_show_print(self):
         options = [
             "Szyfruj input metodą rot13",
@@ -26,7 +23,7 @@ class TestMenu(unittest.TestCase):
             mock_call_list.append(unittest.mock.call(f"{i}. {option}"))
 
         with unittest.mock.patch("builtins.print") as mock_print:
-            self.menu.show()
+            Menu.show()
             mock_print.assert_has_calls(mock_call_list)
 
     def test_provide_value_to_get_choice_return_int(self):
@@ -36,7 +33,7 @@ class TestMenu(unittest.TestCase):
         prompt2 = f"Błędna opcja! Podaj numer z zakresu 1 - {max_range_choice}."
         with unittest.mock.patch("builtins.input", side_effect=checked_input):
             with unittest.mock.patch("builtins.print") as mock_print:
-                choice = self.menu.get_choice(no_of_options=max_range_choice)
+                choice = Menu.get_choice(no_of_options=max_range_choice)
                 mock_print.assert_has_calls(
                     [
                         unittest.mock.call(prompt1),
@@ -60,7 +57,7 @@ class TestMenu(unittest.TestCase):
 
         with unittest.mock.patch("builtins.input", side_effect=checked_input):
             with unittest.mock.patch("builtins.print") as mock_print:
-                path_loaded_file = self.menu.ask_path_loaded_file()
+                path_loaded_file = Menu.ask_path_loaded_file()
                 mock_print.assert_has_calls(
                     [unittest.mock.call(prompt) for _ in range(len(checked_input) - 1)]
                 )
@@ -76,7 +73,7 @@ class TestMenu(unittest.TestCase):
             test_file.write("test data")
 
         with unittest.mock.patch("builtins.input", side_effect=checked_input):
-            path_saved_file = self.menu.ask_path_saved_file()
+            path_saved_file = Menu.ask_path_saved_file()
         self.assertEquals(path_saved_file, expected)
 
         os.remove("test.json")
@@ -90,7 +87,7 @@ class TestMenu(unittest.TestCase):
             test_file.write("test data")
 
         with unittest.mock.patch("builtins.input", side_effect=checked_input):
-            path_saved_file = self.menu.ask_path_saved_file()
+            path_saved_file = Menu.ask_path_saved_file()
         self.assertEquals(path_saved_file, expected)
 
         os.remove("test.json")
@@ -102,11 +99,11 @@ class TestMenu(unittest.TestCase):
         checked_input = ["test.json"]
 
         with unittest.mock.patch("builtins.input", side_effect=checked_input):
-            path_saved_file = self.menu.ask_path_saved_file()
+            path_saved_file = Menu.ask_path_saved_file()
         self.assertEquals(path_saved_file, expected)
 
     def test_provide_letters_numbers_signs_to_ask_for_input_return_string(self):
         checked_input = ["", "zupa1.", "Ala ma kota"]
         with unittest.mock.patch("builtins.input", side_effect=checked_input):
             for i in checked_input:
-                self.assertEquals(self.menu.ask_for_input(), i)
+                self.assertEquals(Menu.ask_for_input(), i)

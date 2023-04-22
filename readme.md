@@ -41,4 +41,4 @@ Install modules from requirements ```pip install -r requirements.txt```<br/>
 
 ## application-view
 
-<img src=”https://user-images.githubusercontent.com/81390714/233806329-c2a23ca6-81db-4221-8f0b-e78d04769ecd.png” width=”50%” height=”50%”>
+<img src=”https://user-images.githubusercontent.com/81390714/233806329-c2a23ca6-81db-4221-8f0b-e78d04769ecd.png” width=”100%” height=”100%”></img>

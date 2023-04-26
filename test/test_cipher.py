@@ -1,11 +1,11 @@
+import unittest
+
 from functionality.buffer import Text
 from functionality.cipher import CaesarCipher
-import unittest
-import pytest
 
 
 class TestCipher(unittest.TestCase):
-    def setup_method(self):
+    def setUp(self):
         self.word = "zupa1, ZUPA1.!?"
         self.word_13 = "mhcn4, MHCN4.!?"
         self.word_47 = "upkv8, UPKV8.!?"

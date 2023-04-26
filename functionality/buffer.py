@@ -1,5 +1,5 @@
-from dataclasses import dataclass, asdict
 from typing import List, Dict
+from dataclasses import dataclass, asdict
 
 
 @dataclass

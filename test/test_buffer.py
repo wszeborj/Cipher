@@ -1,6 +1,7 @@
 import unittest
 from dataclasses import asdict
 from unittest.mock import Mock, patch
+
 from functionality.buffer import Buffer, Text
 
 

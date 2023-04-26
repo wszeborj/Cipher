@@ -1,8 +1,8 @@
+import os
 import unittest
 from unittest.mock import Mock, patch
+
 from functionality.menu import Menu
-import tempfile
-import os
 
 
 class TestMenu(unittest.TestCase):
@@ -107,3 +107,5 @@ class TestMenu(unittest.TestCase):
         with unittest.mock.patch("builtins.input", side_effect=checked_input):
             for i in checked_input:
                 self.assertEquals(Menu.ask_for_input(), i)
+
+        assert "xyz" == "xyz"

@@ -27,10 +27,9 @@ send or receive sensitive information securely.
 
 <ul>
 <li>Python 3.10</li>
-<li>json</li>
 <li>pytest</li>
 <li>unittest</li>
-<li>pre-commit</li>
+<li>Pre-commit</li>
 </ul>
 
 ## Setup
@@ -41,4 +40,4 @@ Install modules from requirements ```pip install -r requirements.txt```<br/>
 
 ## application-view
 
-<img src=”https://user-images.githubusercontent.com/81390714/233806329-c2a23ca6-81db-4221-8f0b-e78d04769ecd.png” width=”100%” height=”100%”></img>
+![img](https://user-images.githubusercontent.com/81390714/233806329-c2a23ca6-81db-4221-8f0b-e78d04769ecd.png)
